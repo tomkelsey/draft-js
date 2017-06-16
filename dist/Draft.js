@@ -6634,6 +6634,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	var stillComposing = false;
 	var textInputData = '';
 
+	/**
+	 * New versions of mobile Chrome don't fire `textinput` (converted to `beforeinput`) event,
+	 * so we'll save data from `compositionend` event.
+	*/
+	var compositionTextData = '';
+
 	var DraftEditorCompositionHandler = {
 	  onBeforeInput: function onBeforeInput(editor, e) {
 	    textInputData = (textInputData || '') + e.data;
@@ -6661,9 +6667,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	   * twice could break the DOM, we only use the first event. Example: Arabic
 	   * Google Input Tools on Windows 8.1 fires `compositionend` three times.
 	   */
-	  onCompositionEnd: function onCompositionEnd(editor) {
+	  onCompositionEnd: function onCompositionEnd(editor, e) {
 	    resolved = false;
 	    stillComposing = false;
+	    compositionTextData = e.data;
 	    setTimeout(function () {
 	      if (!resolved) {
 	        DraftEditorCompositionHandler.resolveComposition(editor);
@@ -6724,8 +6731,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    resolved = true;
-	    var composedChars = textInputData;
+	    var composedChars = textInputData || compositionTextData;
 	    textInputData = '';
+	    compositionTextData = '';
 
 	    var editorState = EditorState.set(editor._latestEditorState, {
 	      inCompositionMode: false
