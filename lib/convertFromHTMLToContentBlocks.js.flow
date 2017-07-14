@@ -182,7 +182,7 @@ function getBlockTypeForTag(tag: string, lastList: ?string, blockRenderMap: Draf
   }
 }
 
-function processInlineTag(tag: string, node: Node, currentStyle: DraftInlineStyle, allowStyles: List<string>): DraftInlineStyle {
+function processInlineTag(tag: string, node: Node, currentStyle: DraftInlineStyle, allowedStyles: List<string>): DraftInlineStyle {
   var styleToCheck = inlineTags[tag];
   if (styleToCheck && allowedStyles.includes(styleToCheck)) {
     currentStyle = currentStyle.add(styleToCheck).toOrderedSet();

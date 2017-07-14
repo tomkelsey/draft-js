@@ -4043,7 +4043,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	}
 
-	function processInlineTag(tag, node, currentStyle, allowStyles) {
+	function processInlineTag(tag, node, currentStyle, allowedStyles) {
 	  var styleToCheck = inlineTags[tag];
 	  if (styleToCheck && allowedStyles.includes(styleToCheck)) {
 	    currentStyle = currentStyle.add(styleToCheck).toOrderedSet();

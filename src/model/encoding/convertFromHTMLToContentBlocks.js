@@ -229,7 +229,7 @@ function processInlineTag(
   tag: string,
   node: Node,
   currentStyle: DraftInlineStyle,
-  allowStyles: List<string>
+  allowedStyles: List<string>
 ): DraftInlineStyle {
   var styleToCheck = inlineTags[tag];
   if (styleToCheck && allowedStyles.includes(styleToCheck)) {
