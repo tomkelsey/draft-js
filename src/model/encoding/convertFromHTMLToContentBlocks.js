@@ -241,22 +241,22 @@ function processInlineTag(
       const fontStyle = htmlElement.style.fontStyle;
       const textDecoration = htmlElement.style.textDecoration;
 
-      if (allowStyles.includes('BOLD') && boldValues.indexOf(fontWeight) >= 0) {
+      if (allowedStyles.includes('BOLD') && boldValues.indexOf(fontWeight) >= 0) {
         style.add('BOLD');
       } else if (notBoldValues.indexOf(fontWeight) >= 0) {
         style.remove('BOLD');
       }
 
-      if (allowStyles.includes('ITALIC') && fontStyle === 'italic') {
+      if (allowedStyles.includes('ITALIC') && fontStyle === 'italic') {
         style.add('ITALIC');
       } else if (fontStyle === 'normal') {
         style.remove('ITALIC');
       }
 
-      if (allowStyles.includes('UNDERLINE') && textDecoration === 'underline') {
+      if (allowedStyles.includes('UNDERLINE') && textDecoration === 'underline') {
         style.add('UNDERLINE');
       }
-      if (allowStyles.includes('STRIKETHROUGH') && textDecoration === 'line-through') {
+      if (allowedStyles.includes('STRIKETHROUGH') && textDecoration === 'line-through') {
         style.add('STRIKETHROUGH');
       }
       if (textDecoration === 'none') {
