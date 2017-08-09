@@ -201,13 +201,13 @@ var DraftEditorCompositionHandler = {
     let composedChars;
     if (DraftFeatureFlags.draft_enable_composition_fixes) {
       composedChars = this.normalizeCompositionInput();
+      beforeInputData = null;
+      compositionUpdateData = null;
+      compositionEndData = null;
     } else {
       composedChars = textInputData;
+      textInputData = '';
     }
-
-    beforeInputData = null;
-    compositionUpdateData = null;
-    compositionEndData = null;
 
     const editorState = EditorState.set(editor._latestEditorState, {
       inCompositionMode: false,
