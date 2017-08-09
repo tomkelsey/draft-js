@@ -14,6 +14,7 @@
 
 import type DraftEditor from 'DraftEditor.react';
 
+const DraftFeatureFlags = require('DraftFeatureFlags');
 const DraftModifier = require('DraftModifier');
 const EditorState = require('EditorState');
 const Keys = require('Keys');
@@ -41,6 +42,7 @@ const RESOLVE_DELAY = 20;
  */
 let resolved = false;
 let stillComposing = false;
+let textInputData = '';
 let beforeInputData = null;
 let compositionUpdateData = null;
 let compositionEndData = null;
@@ -58,7 +60,11 @@ var DraftEditorCompositionHandler = {
    * `compositionend` events that they fire.
    */
   onBeforeInput: function(editor: DraftEditor, e: SyntheticInputEvent): void {
-    beforeInputData = (beforeInputData || '') + e.data;
+    if (DraftFeatureFlags.draft_enable_composition_fixes) {
+      beforeInputData = (beforeInputData || '') + e.data;
+    } else {
+      textInputData = (textInputData || '') + e.data;
+    }
   },
 
   /**
@@ -77,7 +83,9 @@ var DraftEditorCompositionHandler = {
     editor: DraftEditor,
     e: SyntheticInputEvent,
   ): void {
-    compositionUpdateData = e.data;
+    if (DraftFeatureFlags.draft_enable_composition_fixes) {
+      compositionUpdateData = e.data;
+    }
   },
 
   /**
@@ -98,8 +106,10 @@ var DraftEditorCompositionHandler = {
                              e: SyntheticCompositionEvent): void {
     resolved = false;
     stillComposing = false;
-    // Use e.data from the first compositionend event seen
-    compositionEndData = compositionEndData || e.data;
+    if (DraftFeatureFlags.draft_enable_composition_fixes) {
+      // Use e.data from the first compositionend event seen
+      compositionEndData = compositionEndData || e.data;
+    }
     setTimeout(() => {
       if (!resolved) {
         DraftEditorCompositionHandler.resolveComposition(editor);
@@ -188,7 +198,12 @@ var DraftEditorCompositionHandler = {
 
     resolved = true;
 
-    const composedChars = this.normalizeCompositionInput();
+    let composedChars;
+    if (DraftFeatureFlags.draft_enable_composition_fixes) {
+      composedChars = this.normalizeCompositionInput();
+    } else {
+      composedChars = textInputData;
+    }
 
     beforeInputData = null;
     compositionUpdateData = null;
