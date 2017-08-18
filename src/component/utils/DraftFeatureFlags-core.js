@@ -17,7 +17,7 @@ var DraftFeatureFlags = {
   draft_cautious_range_removal_on_blur: false,
   draft_killswitch_allow_nontextnodes: false,
   draft_segmented_entities_behavior: false,
-  draft_enable_composition_fixes: false,
+  draft_enable_composition_fixes: true,
 };
 
 module.exports = DraftFeatureFlags;
