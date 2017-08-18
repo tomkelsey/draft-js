@@ -12,17 +12,17 @@
 
 'use strict';
 
-import type {BidiDirection} from 'UnicodeBidiDirection';
 import type ContentBlock from 'ContentBlock';
 import type {DraftBlockRenderMap} from 'DraftBlockRenderMap';
 import type {DraftDragType} from 'DraftDragType';
 import type {DraftEditorCommand} from 'DraftEditorCommand';
-import type {DraftTextAlignment} from 'DraftTextAlignment';
-import type {DraftInlineStyle} from 'DraftInlineStyle';
 import type {DraftHandleValue} from 'DraftHandleValue';
 import type {DraftPasteSupport} from 'DraftPasteSupport';
+import type {DraftInlineStyle} from 'DraftInlineStyle';
+import type {DraftTextAlignment} from 'DraftTextAlignment';
 import type EditorState from 'EditorState';
 import type SelectionState from 'SelectionState';
+import type {BidiDirection} from 'UnicodeBidiDirection';
 
 export type DraftEditorProps = {
   /**
@@ -95,11 +95,11 @@ export type DraftEditorProps = {
 
   ariaActiveDescendantID?: string,
   ariaAutoComplete?: string,
+  ariaControls?: string,
   ariaDescribedBy?: string,
   ariaExpanded?: boolean,
-  ariaHasPopup?: boolean,
   ariaLabel?: string,
-  ariaOwneeID?: string,
+  ariaMultiline?: boolean,
 
   webDriverTestID?: string,
 
