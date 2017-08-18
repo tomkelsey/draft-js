@@ -13,19 +13,18 @@
 
 'use strict';
 
-import type { BidiDirection } from 'fbjs/lib/UnicodeBidiDirection';
 import type ContentBlock from './ContentBlock';
 import type ContentState from './ContentState';
 import type { DraftDecoratorType } from './DraftDecoratorType';
-import type { List } from 'immutable';
 import type SelectionState from './SelectionState';
+import type { BidiDirection } from 'fbjs/lib/UnicodeBidiDirection';
+import type { List } from 'immutable';
 
 const DraftEditorLeaf = require('./DraftEditorLeaf.react');
 const DraftOffsetKey = require('./DraftOffsetKey');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const Scroll = require('fbjs/lib/Scroll');
-
 const Style = require('fbjs/lib/Style');
 const UnicodeBidi = require('fbjs/lib/UnicodeBidi');
 const UnicodeBidiDirection = require('fbjs/lib/UnicodeBidiDirection');

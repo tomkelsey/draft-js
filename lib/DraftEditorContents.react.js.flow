@@ -13,6 +13,9 @@
 
 'use strict';
 
+import type ContentBlock from './ContentBlock';
+import type { BidiDirection } from 'fbjs/lib/UnicodeBidiDirection';
+
 const DraftEditorBlock = require('./DraftEditorBlock.react');
 const DraftOffsetKey = require('./DraftOffsetKey');
 const EditorState = require('./EditorState');
@@ -21,9 +24,6 @@ const React = require('react');
 const cx = require('fbjs/lib/cx');
 const joinClasses = require('fbjs/lib/joinClasses');
 const nullthrows = require('fbjs/lib/nullthrows');
-
-import type { BidiDirection } from 'fbjs/lib/UnicodeBidiDirection';
-import type ContentBlock from './ContentBlock';
 
 type Props = {
   blockRendererFn: Function;
