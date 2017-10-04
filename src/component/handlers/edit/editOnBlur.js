@@ -14,13 +14,12 @@
 
 import type DraftEditor from 'DraftEditor.react';
 
-const DraftFeatureFlags = require('DraftFeatureFlags');
 const EditorState = require('EditorState');
 
 const containsNode = require('containsNode');
 const getActiveElement = require('getActiveElement');
 
-function editOnBlur(editor: DraftEditor, e: SyntheticEvent): void {
+function editOnBlur(editor: DraftEditor, e: SyntheticEvent<>): void {
   // In a contentEditable element, when you select a range and then click
   // another active element, this does trigger a `blur` event but will not
   // remove the DOM selection from the contenteditable.
@@ -33,7 +32,6 @@ function editOnBlur(editor: DraftEditor, e: SyntheticEvent): void {
     const selection = global.getSelection();
     const editorNode = editor.refs.editor;
     if (
-      !DraftFeatureFlags.draft_cautious_range_removal_on_blur ||
       selection.rangeCount === 1 &&
       containsNode(editorNode, selection.anchorNode) &&
       containsNode(editorNode, selection.focusNode)

@@ -59,7 +59,7 @@ var DraftEditorCompositionHandler = {
    * entire resolved composition result in the `data` member of the 
    * `compositionend` events that they fire.
    */
-  onBeforeInput: function(editor: DraftEditor, e: SyntheticInputEvent): void {
+  onBeforeInput: function(editor: DraftEditor, e: SyntheticInputEvent<>): void {
     if (DraftFeatureFlags.draft_enable_composition_fixes) {
       beforeInputData = (beforeInputData || '') + e.data;
     } else {
@@ -81,7 +81,7 @@ var DraftEditorCompositionHandler = {
    */
   onCompositionUpdate: function(
     editor: DraftEditor,
-    e: SyntheticInputEvent,
+    e: SyntheticInputEvent<>,
   ): void {
     if (DraftFeatureFlags.draft_enable_composition_fixes) {
       compositionUpdateData = e.data;
@@ -103,7 +103,7 @@ var DraftEditorCompositionHandler = {
    * Google Input Tools on Windows 8.1 fires `compositionend` three times.
    */
   onCompositionEnd: function(editor: DraftEditor, 
-                             e: SyntheticCompositionEvent): void {
+                             e: SyntheticCompositionEvent<>): void {
     resolved = false;
     stillComposing = false;
     if (DraftFeatureFlags.draft_enable_composition_fixes) {
@@ -122,7 +122,7 @@ var DraftEditorCompositionHandler = {
    * the arrow keys are used to commit, prevent default so that the cursor
    * doesn't move, otherwise it will jump back noticeably on re-render.
    */
-  onKeyDown: function(editor: DraftEditor, e: SyntheticKeyboardEvent): void {
+  onKeyDown: function(editor: DraftEditor, e: SyntheticKeyboardEvent<>): void {
     if (!stillComposing) {
       // If a keydown event is received after compositionend but before the
       // 20ms timer expires (ex: type option-E then backspace, or type A then
@@ -143,7 +143,7 @@ var DraftEditorCompositionHandler = {
    * characters that we do not want. `preventDefault` allows the composition
    * to be committed while preventing the extra characters.
    */
-  onKeyPress: function(editor: DraftEditor, e: SyntheticKeyboardEvent): void {
+  onKeyPress: function(editor: DraftEditor, e: SyntheticKeyboardEvent<>): void {
     if (e.which === Keys.RETURN) {
       e.preventDefault();
     }
