@@ -6,12 +6,15 @@
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  *
- * @providesModule DraftFeatureFlags
+ * @providesModule DraftFeatureFlags-core
  * @flow
  */
 
 'use strict';
 
-var DraftFeatureFlags = require('./DraftFeatureFlags-core');
+var DraftFeatureFlags = {
+  draft_killswitch_allow_nontextnodes: false,
+  draft_segmented_entities_behavior: false
+};
 
 module.exports = DraftFeatureFlags;
