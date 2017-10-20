@@ -13,15 +13,16 @@
 'use strict';
 
 import type ContentBlock from 'ContentBlock';
-import type {DraftBlockRenderMap} from 'DraftBlockRenderMap';
-import type {DraftDragType} from 'DraftDragType';
-import type {DraftEditorCommand} from 'DraftEditorCommand';
-import type {DraftHandleValue} from 'DraftHandleValue';
-import type {DraftInlineStyle} from 'DraftInlineStyle';
-import type {DraftTextAlignment} from 'DraftTextAlignment';
+import type { DraftBlockRenderMap } from 'DraftBlockRenderMap';
+import type { DraftDragType } from 'DraftDragType';
+import type { DraftEditorCommand } from 'DraftEditorCommand';
+import type { DraftHandleValue } from 'DraftHandleValue';
+import type { DraftInlineStyle } from 'DraftInlineStyle';
+import type { DraftTextAlignment } from 'DraftTextAlignment';
+import type { DraftPasteSupport } from 'DraftPasteSupport';
 import type EditorState from 'EditorState';
 import type SelectionState from 'SelectionState';
-import type {BidiDirection} from 'UnicodeBidiDirection';
+import type { BidiDirection } from 'UnicodeBidiDirection';
 
 export type DraftEditorProps = {
   /**
@@ -78,10 +79,15 @@ export type DraftEditorProps = {
   // autocorrect is enabled as well.
   spellCheck?: boolean,
 
-  // Set whether to remove all style information from pasted content. If your
-  // use case should not have any block or inline styles, it is recommended
-  // that you set this to `true`.
-  stripPastedStyles?: boolean,
+  // Configuration object that specifies which inline styles, block types and
+  // links should be retained on paste. If your use case should not have any
+  // blocks, inline styles and links, it is recommended that you set this to
+  // {
+  //   inlineStyles: List(),
+  //   blockTypes: List(),
+  //   links: false,
+  // }
+  pasteSupport: DraftPasteSupport,
 
   tabIndex?: number,
 
@@ -109,14 +115,14 @@ export type DraftEditorProps = {
   // removing the style from an empty list item.
   handleReturn?: (
     e: SyntheticKeyboardEvent<>,
-    editorState: EditorState,
+    editorState: EditorState
   ) => DraftHandleValue,
 
   // Map a key command string provided by your key binding function to a
   // specified behavior.
   handleKeyCommand?: (
     command: DraftEditorCommand | string,
-    editorState: EditorState,
+    editorState: EditorState
   ) => DraftHandleValue,
 
   // Handle intended text insertion before the insertion occurs. This may be
@@ -126,13 +132,13 @@ export type DraftEditorProps = {
   // quotes.
   handleBeforeInput?: (
     chars: string,
-    editorState: EditorState,
+    editorState: EditorState
   ) => DraftHandleValue,
 
   handlePastedText?: (
     text: string,
     html?: string,
-    editorState: EditorState,
+    editorState: EditorState
   ) => DraftHandleValue,
 
   handlePastedFiles?: (files: Array<Blob>) => DraftHandleValue,
@@ -174,7 +180,7 @@ export type DraftEditorProps = {
   // Provide a map of block rendering configurations. Each block type maps to
   // an element tag and an optional react element wrapper. This configuration
   // is used for both rendering and paste processing.
-  blockRenderMap: DraftBlockRenderMap,
+  blockRenderMap: DraftBlockRenderMap
 };
 
 export type DraftEditorDefaultProps = {
@@ -182,7 +188,7 @@ export type DraftEditorDefaultProps = {
   blockRendererFn: (block: ContentBlock) => ?Object,
   blockStyleFn: (block: ContentBlock) => string,
   keyBindingFn: (e: SyntheticKeyboardEvent<>) => ?string,
+  pasteSupport: DraftPasteSupport,
   readOnly: boolean,
-  spellCheck: boolean,
-  stripPastedStyles: boolean,
+  spellCheck: boolean
 };
