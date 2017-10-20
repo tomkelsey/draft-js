@@ -57,6 +57,18 @@ to fit it within your UI design.
 If this value is not set, text alignment will be based on the characters within
 the editor, on a per-block basis.
 
+#### textDirectionality
+```
+textDirectionality?: DraftTextDirectionality
+```
+Optionally set the overriding text directionality for this editor. The values
+include 'RTL' for right-to-left text, like Hebrew or Arabic, and 'LTR' for
+left-to-right text, like English or Spanish. This directionality will apply to
+the entire contents, regardless of default text direction for input text.
+
+If this value is not set, text directionality will be based on the characters
+within the editor, on a per-block basis.
+
 #### blockRendererFn
 ```
 blockRendererFn?: (block: ContentBlock) => ?Object
@@ -163,14 +175,14 @@ the event is handled and the Draft core should do nothing more with it. By retur
 
 #### handleReturn
 ```
-handleReturn?: (e: SyntheticKeyboardEvent) => DraftHandleValue
+handleReturn?: (e: SyntheticKeyboardEvent, editorState: EditorState) => DraftHandleValue
 ```
 Handle a `RETURN` keydown event. Example usage: Choosing a mention tag from a
 rendered list of results to trigger applying the mention entity to your content.
 
 #### handleKeyCommand
 ```
-handleKeyCommand?: (command: string) => DraftHandleValue
+handleKeyCommand?: (command: string, editorState: EditorState) => DraftHandleValue
 ```
 Handle the named editor command. See
 [Advanced Topics: Key Bindings](/docs/advanced-topics-key-bindings.html)
@@ -178,7 +190,7 @@ for details on usage.
 
 #### handleBeforeInput
 ```
-handleBeforeInput?: (chars: string) => DraftHandleValue
+handleBeforeInput?: (chars: string, editorState: EditorState) => DraftHandleValue
 ```
 Handle the characters to be inserted from a `beforeInput` event. Returning `'handled'`
 causes the default behavior of the `beforeInput` event to be prevented (i.e. it is
@@ -191,7 +203,7 @@ and to convert typed emoticons into images.
 
 #### handlePastedText
 ```
-handlePastedText?: (text: string, html?: string) => DraftHandleValue
+handlePastedText?: (text: string, html?: string, editorState: EditorState) => DraftHandleValue
 ```
 Handle text and html(for rich text) that has been pasted directly into the editor. Returning true will prevent the default paste behavior.
 
@@ -233,11 +245,32 @@ onTab?: (e: SyntheticKeyboardEvent) => void
 onUpArrow?: (e: SyntheticKeyboardEvent) => void
 ```
 
+#### onRightArrow
+```
+onRightArrow?: (e: SyntheticKeyboardEvent) => void
+```
+
 #### onDownArrow
 ```
 onDownArrow?: (e: SyntheticKeyboardEvent) => void
 ```
 
+#### onLeftArrow
+```
+onLeftArrow?: (e: SyntheticKeyboardEvent) => void
+```
+
+### Mouse events
+
+### onFocus
+```
+onFocus?: (e: SyntheticFocusEvent) => void
+```
+
+### onBlur
+```
+onBlur?: (e: SyntheticFocusEvent) => void
+```
 
 ## Methods
 
