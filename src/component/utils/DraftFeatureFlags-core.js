@@ -15,6 +15,7 @@
 var DraftFeatureFlags = {
   draft_killswitch_allow_nontextnodes: false,
   draft_segmented_entities_behavior: false,
+  draft_enable_composition_fixes: false,
 };
 
 module.exports = DraftFeatureFlags;
