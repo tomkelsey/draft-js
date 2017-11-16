@@ -10516,8 +10516,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      key: finalKey,
 	      text: prependToTail.getText() + tailText,
 	      characterList: prependToTail.getCharacterList().concat(tailCharacters),
-	      data: prependToTail.getData(),
-	      type: prependToTail.getType()
+	      data: prependToTail.getData()
+	      // type: prependToTail.getType(),
 	    });
 
 	    newBlockArr.push(modifiedTail);

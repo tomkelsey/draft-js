@@ -120,7 +120,7 @@ function insertFragmentIntoContentState(
       text: prependToTail.getText() + tailText,
       characterList: prependToTail.getCharacterList().concat(tailCharacters),
       data: prependToTail.getData(),
-      type: prependToTail.getType(),
+      // type: prependToTail.getType(),
     });
 
     newBlockArr.push(modifiedTail);
