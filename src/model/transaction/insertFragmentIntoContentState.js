@@ -59,7 +59,7 @@ function insertFragmentIntoContentState(
         targetOffset,
       ),
       data: pastedBlock.getData(),
-      type: pastedBlock.getType(),
+      // type: pastedBlock.getType(),
     });
 
     finalKey = targetKey;
