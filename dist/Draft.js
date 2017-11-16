@@ -10455,7 +10455,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var newBlock = targetBlock.merge({
 	      text: text.slice(0, targetOffset) + pastedBlock.getText() + text.slice(targetOffset),
 	      characterList: insertIntoList(chars, pastedBlock.getCharacterList(), targetOffset),
-	      data: pastedBlock.getData()
+	      data: pastedBlock.getData(),
+	      type: pastedBlock.getType()
 	    });
 
 	    finalKey = targetKey;
